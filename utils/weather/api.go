@@ -1,8 +1,8 @@
 package weatherApi
 
 import (
-	"../../config"
 	"fmt"
+	"github.com/heismehrab/golang-weather-api/config"
 	"io/ioutil"
 	"net/http"
 )

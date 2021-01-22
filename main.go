@@ -1,10 +1,10 @@
 package main
 
 import (
-	"./utils/weather"
 	"bufio"
 	"encoding/json"
 	"fmt"
+	"github.com/heismehrab/golang-weather-api/utils/weather"
 	"os"
 	"strings"
 )
