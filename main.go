@@ -35,4 +35,6 @@ func main() {
 	}
 
 	// TODO. Handle response data with a beautiful readable structure.
+	// TODO. I have to do something witch i dont remember now, at 2021-23-1 00:03.
+	// TODO. Write a good document and explain the purpose of developing these codes.
 }
