@@ -2,34 +2,31 @@ package weatherApi
 
 import (
 	"../../config"
-	"errors"
+	"fmt"
 	"io/ioutil"
 	"net/http"
-	"strings"
 )
 
+// Get url data from config file.
 func GetApiUrl() string {
 	return config.CurrentWeatherApiUrl + config.ApiKey
 }
 
-func GetCityWeather(city string) ([]byte, error) {
-
-	if city == "" {
-		return make([]byte, 1), errors.New("argument city is empty")
-	}
-
-	requestUrl :=  strings.Replace(GetApiUrl(), "{city}", city, 1)
+// Send a request and get
+// weather data from stations.
+func GetCityWeather(city string) []byte {
+	requestUrl :=  fmt.Sprintf(GetApiUrl(), city)
 	res, err := http.Get(requestUrl)
 
 	if err != nil {
-		return make([]byte, 1), err
+		panic(err.Error())
 	}
 
-	resBody, err := ioutil.ReadAll(res.Body)
+	result, err := ioutil.ReadAll(res.Body)
 
 	if err != nil {
-		return make([]byte, 1), err
+		panic(err.Error())
 	}
 
-	return resBody, err
+	return result
 }
