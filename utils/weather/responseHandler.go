@@ -1,5 +1,7 @@
 package weatherApi
 
+import "fmt"
+
 type MainResponse struct {
 	Coord coord `json:"coord"`
 	Weather []weather `json:"weather"`
@@ -27,7 +29,7 @@ type weather struct {
 
 type main struct {
 	Temp float32 `json:"temp"`
-	Feels_like float32 `json:"feels_like"`
+	FeelsLike float32 `json:"feels_like"`
 	FempMin float32 `json:"femp_min"`
 	TtempMax float32 `json:"temp_max"`
 	Pressure int `json:"pressure"`
@@ -52,4 +54,17 @@ type sys struct {
 	Country string `json:"country"`
 	Sunrise int `json:"sunrise"`
 	Sunset int `json:"sunset"`
+}
+
+func CliOutput(response MainResponse) string {
+	output := " city : %s (%s,%s) \n"
+	output = output + ""
+
+
+	return fmt.Sprintf(
+		output,
+		response.Name,
+		response.Coord.Lat,
+		response.Coord.Lon,
+		)
 }
