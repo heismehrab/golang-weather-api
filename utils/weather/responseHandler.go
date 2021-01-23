@@ -57,10 +57,9 @@ type sys struct {
 }
 
 func CliOutput(response *MainResponse) string {
-	output := " city : %s (%s,%s) \n"
-	output = output + ""
+	output := "city : %s (%d,%d) \n"
 
-
+	// TODO. Put more data in output text.
 	return fmt.Sprintf(
 		output,
 		response.Name,
