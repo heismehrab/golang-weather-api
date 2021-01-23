@@ -56,7 +56,7 @@ type sys struct {
 	Sunset int `json:"sunset"`
 }
 
-func CliOutput(response MainResponse) string {
+func CliOutput(response *MainResponse) string {
 	output := " city : %s (%s,%s) \n"
 	output = output + ""
 

@@ -34,5 +34,5 @@ func main() {
 		panic(err.Error())
 	}
 
-	return weatherApi.CliOutput(result)
+	print(weatherApi.CliOutput(result))
 }
