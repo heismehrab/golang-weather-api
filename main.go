@@ -35,6 +35,4 @@ func main() {
 	}
 
 	print(weatherApi.CliOutput(result))
-
-	// TODO. Write a good document and explain the purpose of developing this package.
 }
