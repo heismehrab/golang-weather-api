@@ -1,6 +1,9 @@
 package weatherApi
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 type MainResponse struct {
 	Coord coord `json:"coord"`
@@ -13,6 +16,8 @@ type MainResponse struct {
 	Id int `json:"id"`
 	Name string `json:"name"`
 	Cod int `json:"cod"`
+	Sys sys `json:"sys"`
+	Clouds clouds `json:"clouds"`
 }
 
 type coord struct {
@@ -52,18 +57,28 @@ type sys struct {
 	Type int `json:"type"`
 	Id int `json:"id"`
 	Country string `json:"country"`
-	Sunrise int `json:"sunrise"`
-	Sunset int `json:"sunset"`
+	Sunrise int64 `json:"sunrise"`
+	Sunset int64 `json:"sunset"`
 }
 
 func CliOutput(response *MainResponse) string {
-	output := "city : %s (%d,%d) \n"
+	output := "-----------------------\n" +
+		"city : %s - %s (%f,%f) \n" +
+		"%s state, %f km wind speed and %d cloud/s \n" +
+		"sunrise: %s \n" +
+		"sunset: %s \n" +
+		"-----------------------"
 
-	// TODO. Put more data in output text.
 	return fmt.Sprintf(
 		output,
+		response.Sys.Country,
 		response.Name,
 		response.Coord.Lat,
 		response.Coord.Lon,
-		)
+		response.Weather[0].Main,
+		response.Wind.Speed,
+		response.Clouds.All,
+		time.Unix(response.Sys.Sunrise, 0),
+		time.Unix(response.Sys.Sunset, 0),
+	)
 }
